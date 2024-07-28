@@ -48,7 +48,7 @@ async def is_user_joined(bot, message: Message):
                 parse_mode=ParseMode.HTML,
                 reply_markup=InlineKeyboardMarkup(
                 [[
-                    InlineKeyboardButton("❆ Jᴏɪɴ Oᴜʀ Cʜᴀɴɴᴇʟ ❆", url=invite_link.invite_link)
+                    InlineKeyboardButton("❆ Jᴏɪɴ Oᴜʀ Cʜᴀɴɴᴇʟ ❆", url=https://t.me/tcp_bots)
                 ]]
                 )
             )
@@ -57,7 +57,7 @@ async def is_user_joined(bot, message: Message):
                 text = "<i>Jᴏɪɴ ᴍʏ ᴜᴘᴅᴀᴛᴇ ᴄʜᴀɴɴᴇʟ ᴛᴏ ᴜsᴇ ᴍᴇ 🔐</i>",
                 reply_markup=InlineKeyboardMarkup(
                     [[
-                        InlineKeyboardButton("❆ Jᴏɪɴ Oᴜʀ Cʜᴀɴɴᴇʟ ❆", url=invite_link.invite_link)
+                        InlineKeyboardButton("❆ Jᴏɪɴ Oᴜʀ Cʜᴀɴɴᴇʟ ❆", url=https://t.me/tcp_bots)
                     ]]
                 ),
                 parse_mode=ParseMode.HTML
