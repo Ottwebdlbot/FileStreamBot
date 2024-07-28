@@ -11,7 +11,6 @@ from typing import (
     Union
 )
 
-
 db = Database(Telegram.DATABASE_URL, Telegram.SESSION_NAME)
 
 async def get_invite_link(bot, chat_id: Union[str, int]):
@@ -47,9 +46,9 @@ async def is_user_joined(bot, message: Message):
                 caption="<i>Jᴏɪɴ ᴍʏ ᴜᴘᴅᴀᴛᴇ ᴄʜᴀɴɴᴇʟ ᴛᴏ ᴜsᴇ ᴍᴇ 🔐</i>",
                 parse_mode=ParseMode.HTML,
                 reply_markup=InlineKeyboardMarkup(
-                [[
-                    InlineKeyboardButton("❆ Jᴏɪɴ Oᴜʀ Cʜᴀɴɴᴇʟ ❆", url=https://t.me/tcp_bots)
-                ]]
+                    [[
+                        InlineKeyboardButton("❆ Jᴏɪɴ Oᴜʀ Cʜᴀɴɴᴇʟ ❆", url="https://t.me/tcp_bots")
+                    ]]
                 )
             )
         else:
@@ -57,7 +56,7 @@ async def is_user_joined(bot, message: Message):
                 text = "<i>Jᴏɪɴ ᴍʏ ᴜᴘᴅᴀᴛᴇ ᴄʜᴀɴɴᴇʟ ᴛᴏ ᴜsᴇ ᴍᴇ 🔐</i>",
                 reply_markup=InlineKeyboardMarkup(
                     [[
-                        InlineKeyboardButton("❆ Jᴏɪɴ Oᴜʀ Cʜᴀɴɴᴇʟ ❆", url=https://t.me/tcp_bots)
+                        InlineKeyboardButton("❆ Jᴏɪɴ Oᴜʀ Cʜᴀɴɴᴇʟ ❆", url="https://t.me/tcp_bots")
                     ]]
                 ),
                 parse_mode=ParseMode.HTML
@@ -178,39 +177,4 @@ async def is_user_authorized(message):
                 disable_web_page_preview=True
             )
             return False
-
-    return True
-
-#---------------------[ USER EXIST ]---------------------#
-
-async def is_user_exist(bot, message):
-    if not bool(await db.get_user(message.from_user.id)):
-        await db.add_user(message.from_user.id)
-        await bot.send_message(
-            Telegram.ULOG_CHANNEL,
-            f"**#NᴇᴡUsᴇʀ**\n**⬩ ᴜsᴇʀ ɴᴀᴍᴇ :** [{message.from_user.first_name}](tg://user?id={message.from_user.id})\n**⬩ ᴜsᴇʀ ɪᴅ :** `{message.from_user.id}`"
-        )
-
-async def is_channel_exist(bot, message):
-    if not bool(await db.get_user(message.chat.id)):
-        await db.add_user(message.chat.id)
-        members = await bot.get_chat_members_count(message.chat.id)
-        await bot.send_message(
-            Telegram.ULOG_CHANNEL,
-            f"**#NᴇᴡCʜᴀɴɴᴇʟ** \n**⬩ ᴄʜᴀᴛ ɴᴀᴍᴇ :** `{message.chat.title}`\n**⬩ ᴄʜᴀᴛ ɪᴅ :** `{message.chat.id}`\n**⬩ ᴛᴏᴛᴀʟ ᴍᴇᴍʙᴇʀs :** `{members}`"
-        )
-
-async def verify_user(bot, message):
-    if not await is_user_authorized(message):
-        return False
-
-    if await is_user_banned(message):
-        return False
-
-    await is_user_exist(bot, message)
-
-    if Telegram.FORCE_SUB:
-        if not await is_user_joined(bot, message):
-            return False
-
     return True
