@@ -6,10 +6,10 @@ load_dotenv()
 class Telegram:
     API_ID = 23746596
     API_HASH = "15ce5501fd05fae38473f02a97fdf899"
-    BOT_TOKEN = "6396512711:AAFTtuD4BTwzBFU6DoY3S05S2SnIeYM9m-I"
+    BOT_TOKEN = "6462070850:AAFjJQ2OJ96cYiEhyBJ0QxFdd_-Ckdu8XzQ"
     OWNER_ID = 5238170563
     WORKERS = int(env.get("WORKERS", "6"))  # 8 workers = 8 commands at once
-    DATABASE_URL = "mongodb+srv://Shivott:ygMNJNweOWZ0Nlvp@cluster0.zawpjmu.mong"
+    DATABASE_URL = "mongodb+srv://Shivott:ygMNJNweOWZ0Nlvp@cluster0.zawpjmu.mongodb.net/?retryWrites=true&w=majority"
     UPDATES_CHANNEL = str(env.get('UPDATES_CHANNEL', "Telegram"))
     SESSION_NAME = str(env.get('SESSION_NAME', 'FileStream'))
     FORCE_SUB_ID = -100221271373
